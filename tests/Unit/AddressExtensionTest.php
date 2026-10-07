@@ -12,6 +12,7 @@ final class AddressExtensionTest extends TestCase
     protected array $cities = [];
     protected array $streetTypes = [];
     protected array $streetNames = [];
+    protected array $streetAdjectiveNames = [];
 
     protected function setUp(): void
     {
@@ -24,6 +25,7 @@ final class AddressExtensionTest extends TestCase
         $this->cities = $reflection->getProperty('cities')->getValue($extension);
         $this->streetTypes = $reflection->getProperty('streetTypes')->getValue($extension);
         $this->streetNames = $reflection->getProperty('streetNames')->getValue($extension);
+        $this->streetAdjectiveNames = $reflection->getProperty('streetAdjectiveNames')->getValue($extension);
     }
 
     public function testRegion(): void
@@ -73,8 +75,12 @@ final class AddressExtensionTest extends TestCase
         for ($i = 0; $i < 100; $i++) {
             [$type, $name] = explode(' ', $this->faker->streetName(), 2);
 
-            $this->assertContains($type, $this->streetTypes);
-            $this->assertContains($name, $this->streetNames);
+            if (in_array($name, $this->streetAdjectiveNames, true)) {
+                $this->assertSame('вул.', $type);
+            } else {
+                $this->assertContains($type, $this->streetTypes);
+                $this->assertContains($name, $this->streetNames);
+            }
         }
     }
 
