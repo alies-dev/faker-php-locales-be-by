@@ -1,0 +1,45 @@
+{
+  "name": "xefi/faker-php-locales-be-by",
+  "type": "library",
+  "description": "Faker extension to include be_BY locale",
+  "keywords": [
+    "faker",
+    "data",
+    "be",
+    "by"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alies Lapatsin"
+    }
+  ],
+  "require": {
+    "php": "^8.3",
+    "psr/container": "^2.0",
+    "xefi/faker-php": "^1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^11"
+  },
+  "autoload": {
+    "psr-4": {
+      "Xefi\\Faker\\BeBy\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Xefi\\Faker\\BeBy\\Tests\\": "tests/"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "extra": {
+    "faker": {
+      "providers": [
+        "Xefi\\Faker\\BeBy\\FakerBeByServiceProvider"
+      ]
+    }
+  }
+}
